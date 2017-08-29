@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  AriyaHouseITDemo
+
+  Created by msm72 on 29.08.17.
+  Copyright © 2017 RemoteJob. All rights reserved.
+*/
+
+
+"Info"                          =   "Инфо";
+"Error"                         =   "Ошибка";
+"Location authorization error"  =   "Пожалуйста, перейдите в Настройки и включите службу геолокации";

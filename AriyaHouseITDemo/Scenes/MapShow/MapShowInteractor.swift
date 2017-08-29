@@ -14,26 +14,36 @@ import UIKit
 
 // MARK: - Business Logic protocols
 protocol MapShowBusinessLogic {
-    func doSomething(request: MapShowModels.Something.RequestModel)
+    func loadLocationInMap(fromRequestModel requestModel: MapShowModels.Something.RequestModel)
 }
 
 protocol MapShowDataStore {
-    //var name: String { get set }
+    // var name: String { get set }
 }
 
 class MapShowInteractor: MapShowBusinessLogic, MapShowDataStore {
     // MARK: - Properties
     var presenter: MapShowPresentationLogic?
     var worker: MapShowWorker?
-    //var name: String = ""
+    // var name: String = ""
+    let locationManager = MSMLocationManager()
     
     
     // MARK: - Business logic implementation
-    func doSomething(request: MapShowModels.Something.RequestModel) {
+    func loadLocationInMap(fromRequestModel requestModel: MapShowModels.Something.RequestModel) {
         worker = MapShowWorker()
         worker?.doSomeWork()
         
-        let responseModel = MapShowModels.Something.ResponseModel()
-        presenter?.presentSomething(response: responseModel)
+        // Start MSMLocationManager
+        locationManager.startCoreLocation()
+        
+        // Search location
+        locationManager.handlerLocationCompletion = { _ in
+            let coordinate = CLLocationCoordinate2D.init(latitude: self.locationManager.currentLocation.latitude!,
+                                                         longitude: self.locationManager.currentLocation.longitude!)
+            
+            let responseModel = MapShowModels.Something.ResponseModel(coordinate: coordinate)
+            self.presenter?.prepareDisplayLocationInMap(fromResponseModel: responseModel)
+        }
     }
 }

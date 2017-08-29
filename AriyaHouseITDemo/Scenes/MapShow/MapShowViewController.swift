@@ -14,7 +14,7 @@ import UIKit
 
 // MARK: - Input & Output protocols
 protocol MapShowDisplayLogic: class {
-    func displaySomething(viewModel: MapShowModels.Something.ViewModel)
+    func displayLocationInMap(fromViewModel viewModel: MapShowModels.Something.ViewModel)
 }
 
 class MapShowViewController: UIViewController {
@@ -74,23 +74,27 @@ class MapShowViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        doSomething()
+        viewSettingsDidLoad()
     }
     
     
     // MARK: - Custom Functions
-    func doSomething() {
+    func viewSettingsDidLoad() {
         let requestModel = MapShowModels.Something.RequestModel()
         
-        interactor?.doSomething(request: requestModel)
+        interactor?.loadLocationInMap(fromRequestModel: requestModel)
+        
+        // Setup Google Map
+        mapView.isMyLocationEnabled = true
+        mapView.settings.myLocationButton = true
     }
 }
 
 
 // MARK: - MapShowDisplayLogic
 extension MapShowViewController: MapShowDisplayLogic {
-    func displaySomething(viewModel: MapShowModels.Something.ViewModel) {
+    func displayLocationInMap(fromViewModel viewModel: MapShowModels.Something.ViewModel) {
         // NOTE: Display the result from the Presenter
-        // nameTextField.text = viewModel.name
+        self.mapView.camera = GMSCameraPosition(target: viewModel.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
     }
 }

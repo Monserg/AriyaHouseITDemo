@@ -20,9 +20,11 @@ enum MapShowModels {
         }
         
         struct ResponseModel {
+            let coordinate: CLLocationCoordinate2D
         }
         
         struct ViewModel {
+            let coordinate: CLLocationCoordinate2D
         }
     }
 }

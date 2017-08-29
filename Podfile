@@ -7,5 +7,7 @@ target 'AriyaHouseITDemo' do
 
    pod 'Alamofire', '~> 4.5'
    pod 'GoogleMaps', '~> 2.4'
+   pod 'GooglePlaces', '~> 2.4'
+   pod 'Localize-Swift', '~> 1.6'
    
 end

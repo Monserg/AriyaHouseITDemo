@@ -14,7 +14,7 @@ import UIKit
 
 // MARK: - Presentation Logic protocols
 protocol MapShowPresentationLogic {
-    func presentSomething(response: MapShowModels.Something.ResponseModel)
+    func prepareDisplayLocationInMap(fromResponseModel responseModel: MapShowModels.Something.ResponseModel)
 }
 
 class MapShowPresenter: MapShowPresentationLogic {
@@ -23,8 +23,8 @@ class MapShowPresenter: MapShowPresentationLogic {
     
     
     // MARK: - Presentation Logic implementation
-    func presentSomething(response: MapShowModels.Something.ResponseModel) {
-        let viewModel = MapShowModels.Something.ViewModel()
-        viewController?.displaySomething(viewModel: viewModel)
+    func prepareDisplayLocationInMap(fromResponseModel responseModel: MapShowModels.Something.ResponseModel) {
+        let viewModel = MapShowModels.Something.ViewModel(coordinate: responseModel.coordinate)
+        viewController?.displayLocationInMap(fromViewModel: viewModel)
     }
 }
