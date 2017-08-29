@@ -25,6 +25,8 @@ class MapShowViewController: UIViewController {
     var interactor: MapShowBusinessLogic?
     var router: (NSObjectProtocol & MapShowRoutingLogic & MapShowDataPassing)?
     var marker: GMSMarker?
+    var coordinateAvarage: CLLocationCoordinate2D?
+    
     
     // MARK: - IBOutlets
     // @IBOutlet weak var nameTextField: UITextField!
@@ -114,25 +116,35 @@ class MapShowViewController: UIViewController {
                 mapAddMarkers(fromLocations: locations)
             }
         } else if locations.count > 1 {
-            self.mapView.animate(toZoom: 12)
-            
             // Add custom marker
             mapAddMarkers(fromLocations: locations)
+            
+            self.mapView.camera = GMSCameraPosition(target: coordinateAvarage!, zoom: 9, bearing: 0, viewingAngle: 0)
         }
     }
     
     func mapAddMarkers(fromLocations locations: [MSMLocationItem]) {
+        var latitudeAverage: Double = 0
+        var longitudeAverage: Double = 0
+        var count: Double = 0
+
         // Delete all markers
         self.mapView.clear()
         
         // Add new markers from API
         for location in locations {
             // Add custom marker
+            latitudeAverage += location.latitude!
+            longitudeAverage += location.longitude!
+            count += 1
+            
             let coordinate = CLLocationCoordinate2D(latitude: location.latitude!, longitude: location.longitude!)
             let marker = GMSMarker(position: coordinate)
             marker.map = mapView
             marker.icon = GMSMarker.markerImage(with: .green)
         }
+        
+        coordinateAvarage = CLLocationCoordinate2D(latitude: latitudeAverage / count, longitude: longitudeAverage / count)
     }
 }
 
@@ -140,7 +152,7 @@ class MapShowViewController: UIViewController {
 // MARK: - MapShowDisplayLogic
 extension MapShowViewController: MapShowDisplayLogic {
     func displayLocationInMap(fromViewModel viewModel: MapShowModels.Location.ViewModel) {
-        mapRegionDidLoad(fromLocations: viewModel.locationItems, andVerified: viewModel.locationItems.first!.isVerified)
+        mapRegionDidLoad(fromLocations: viewModel.locationItems, andVerified: !viewModel.locationItems.first!.isVerified)
     }
     
     func displayLocationByTapInMap(fromViewModel viewModel: MapShowModels.Location.ViewModel) {
