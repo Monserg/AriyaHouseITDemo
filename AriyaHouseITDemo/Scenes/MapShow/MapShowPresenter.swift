@@ -24,7 +24,7 @@ class MapShowPresenter: MapShowPresentationLogic {
     
     // MARK: - Presentation Logic implementation
     func prepareDisplayLocationInMap(fromResponseModel responseModel: MapShowModels.Something.ResponseModel) {
-        let viewModel = MapShowModels.Something.ViewModel(coordinate: responseModel.coordinate)
+        let viewModel = MapShowModels.Something.ViewModel(coordinate: responseModel.coordinate, isVerified: responseModel.isVerified)
         viewController?.displayLocationInMap(fromViewModel: viewModel)
     }
 }

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AriyaHouseITDemo/Services/MSMLocationManager.swift"
-            timestampString = "525689735.873218"
+            timestampString = "525694719.233606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "geocodingAddress(string:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AriyaHouseITDemo/Services/MSMLocationManager.swift"
-            timestampString = "525689735.873218"
+            timestampString = "525694719.233606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "geocodingAddress(string:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,43 +42,139 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AriyaHouseITDemo/Services/MSMLocationManager.swift"
-            timestampString = "525689735.873218"
+            timestampString = "525694719.233606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "locationManager(_:didChangeAuthorization:)"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "geocodingAddress(string:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AriyaHouseITDemo/Services/MSMLocationManager.swift"
+            timestampString = "525694719.233606"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "locationManager(_:didUpdateLocations:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AriyaHouseITDemo/Common/Models/MSMLocationItem.swift"
+            timestampString = "525695808.228588"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "verifyCoordinates(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AriyaHouseITDemo/Common/Models/MSMLocationItem.swift"
+            timestampString = "525695808.228588"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "verifyCoordinates(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AriyaHouseITDemo/Scenes/MapShow/MapShowViewController.swift"
+            timestampString = "525695808.228588"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "displayLocationInMap(fromViewModel:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AriyaHouseITDemo/Scenes/MapShow/MapShowViewController.swift"
+            timestampString = "525696450.579504"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "displayLocationInMap(fromViewModel:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AriyaHouseITDemo/Scenes/MapShow/MapShowInteractor.swift"
+            timestampString = "525696488.59979"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "loadLocationInMap(fromRequestModel:)"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "AriyaHouseITDemo.MSMLocationManager.locationManager (__ObjC.CLLocationManager, didChangeAuthorization : __C.CLAuthorizationStatus) -&gt; ()"
+                  symbolName = "AriyaHouseITDemo.MapShowInteractor.loadLocationInMap (fromRequestModel : AriyaHouseITDemo.MapShowModels.Something.RequestModel) -&gt; ()"
                   moduleName = "AriyaHouseITDemo"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/msm72/My%20Projects/Ariya%20House%20IT/app/AriyaHouseITDemo/AriyaHouseITDemo/Services/MSMLocationManager.swift"
-                  timestampString = "525691591.256427"
+                  urlString = "file:///Users/msm72/My%20Projects/Ariya%20House%20IT/app/AriyaHouseITDemo/AriyaHouseITDemo/Scenes/MapShow/MapShowInteractor.swift"
+                  timestampString = "525696732.351966"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "142"
-                  endingLineNumber = "142"
-                  offsetFromSymbolStart = "111">
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
+                  offsetFromSymbolStart = "173">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "AriyaHouseITDemo.MSMLocationManager.(locationManager (__ObjC.CLLocationManager, didChangeAuthorization : __C.CLAuthorizationStatus) -&gt; ()).(closure #1)"
+                  symbolName = "AriyaHouseITDemo.MapShowInteractor.(loadLocationInMap (fromRequestModel : AriyaHouseITDemo.MapShowModels.Something.RequestModel) -&gt; ()).(closure #1)"
                   moduleName = "AriyaHouseITDemo"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/msm72/My%20Projects/Ariya%20House%20IT/app/AriyaHouseITDemo/AriyaHouseITDemo/Services/MSMLocationManager.swift"
-                  timestampString = "525691591.259641"
+                  urlString = "file:///Users/msm72/My%20Projects/Ariya%20House%20IT/app/AriyaHouseITDemo/AriyaHouseITDemo/Scenes/MapShow/MapShowInteractor.swift"
+                  timestampString = "525696732.353359"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "142"
-                  endingLineNumber = "142"
-                  offsetFromSymbolStart = "4">
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "24">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -89,13 +185,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AriyaHouseITDemo/Services/MSMLocationManager.swift"
-            timestampString = "525689744.995953"
+            filePath = "AriyaHouseITDemo/Scenes/MapShow/MapShowInteractor.swift"
+            timestampString = "525696490.231672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "geocodingAddress(string:completion:)"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "loadLocationInMap(fromRequestModel:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

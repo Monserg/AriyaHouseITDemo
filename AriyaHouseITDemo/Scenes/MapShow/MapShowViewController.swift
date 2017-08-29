@@ -21,7 +21,7 @@ class MapShowViewController: UIViewController {
     // MARK: - Properties
     var interactor: MapShowBusinessLogic?
     var router: (NSObjectProtocol & MapShowRoutingLogic & MapShowDataPassing)?
-    
+    var marker: GMSMarker?
     
     // MARK: - IBOutlets
     // @IBOutlet weak var nameTextField: UITextField!
@@ -96,5 +96,12 @@ extension MapShowViewController: MapShowDisplayLogic {
     func displayLocationInMap(fromViewModel viewModel: MapShowModels.Something.ViewModel) {
         // NOTE: Display the result from the Presenter
         self.mapView.camera = GMSCameraPosition(target: viewModel.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+        
+        // Add custom marker
+        if (!viewModel.isVerified) {
+            self.marker = GMSMarker(position: viewModel.coordinate)
+            self.marker!.map = mapView
+            self.marker!.icon = GMSMarker.markerImage(with: .green)
+        }
     }
 }

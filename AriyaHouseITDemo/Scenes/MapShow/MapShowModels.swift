@@ -21,10 +21,12 @@ enum MapShowModels {
         
         struct ResponseModel {
             let coordinate: CLLocationCoordinate2D
+            let isVerified: Bool
         }
         
         struct ViewModel {
             let coordinate: CLLocationCoordinate2D
+            let isVerified: Bool
         }
     }
 }

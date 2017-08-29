@@ -42,7 +42,7 @@ class MapShowInteractor: MapShowBusinessLogic, MapShowDataStore {
             let coordinate = CLLocationCoordinate2D.init(latitude: self.locationManager.currentLocation.latitude!,
                                                          longitude: self.locationManager.currentLocation.longitude!)
             
-            let responseModel = MapShowModels.Something.ResponseModel(coordinate: coordinate)
+            let responseModel = MapShowModels.Something.ResponseModel(coordinate: coordinate, isVerified: self.locationManager.currentLocation.isVerified)
             self.presenter?.prepareDisplayLocationInMap(fromResponseModel: responseModel)
         }
     }

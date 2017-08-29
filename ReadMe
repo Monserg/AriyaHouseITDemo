@@ -1,0 +1,20 @@
+Use cases:
+
+1. case "Open map":
+    - show current location marker
+    - if current region is now Russia or Kazakhstan, show Karaganda coordinate (latitude = 49.80456319954445, longitude = 73.07684898376465) and marker
+
+2.
+
+
+
+
+Links:
+
+1. https://www.gps-coordinates.net
+
+2. https://www.gpxgenerator.com/#
+
+3. https://developers.google.com/maps/documentation/ios-sdk/marker?hl=ru
+
+4. 

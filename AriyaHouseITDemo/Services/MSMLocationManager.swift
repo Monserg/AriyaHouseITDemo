@@ -21,7 +21,9 @@ class MSMLocationManager: UIViewController {
     
     var currentLocation: MSMLocationItem! {
         didSet {
-            self.stopCoreLocation()
+            self.currentLocation.verifyCoordinates(completion: { _ in
+                self.stopCoreLocation()
+            })
         }
     }
     
@@ -108,7 +110,7 @@ class MSMLocationManager: UIViewController {
             
             return completion()
         }
-    }
+    }    
 }
 
 
@@ -125,7 +127,9 @@ extension MSMLocationManager: CLLocationManagerDelegate {
                                                                latitude: (locations[0] as CLLocation).coordinate.latitude,
                                                                longitude: (locations[0] as CLLocation).coordinate.longitude,
                                                                addressCity: placeMark.addressDictionary!["City"] as? String,
-                                                               addressStreet: placeMark.addressDictionary!["Thoroughfare"] as? String)
+                                                               addressStreet: placeMark.addressDictionary!["Thoroughfare"] as? String,
+                                                               countryCode: placeMark.addressDictionary!["CountryCode"] as? String,
+                                                               isVerified: true)
                     }
                 }
             }
