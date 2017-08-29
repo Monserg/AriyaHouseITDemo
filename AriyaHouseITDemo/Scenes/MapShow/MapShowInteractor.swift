@@ -14,7 +14,8 @@ import UIKit
 
 // MARK: - Business Logic protocols
 protocol MapShowBusinessLogic {
-    func loadLocationInMap(fromRequestModel requestModel: MapShowModels.Something.RequestModel)
+    func loadLocationInMap(fromRequestModel requestModel: MapShowModels.Location.RequestModel)
+    func loadLocationByTapInMap(fromRequestModel requestModel: MapShowModels.Location.RequestModel)
 }
 
 protocol MapShowDataStore {
@@ -30,7 +31,7 @@ class MapShowInteractor: MapShowBusinessLogic, MapShowDataStore {
     
     
     // MARK: - Business logic implementation
-    func loadLocationInMap(fromRequestModel requestModel: MapShowModels.Something.RequestModel) {
+    func loadLocationInMap(fromRequestModel requestModel: MapShowModels.Location.RequestModel) {
         worker = MapShowWorker()
         worker?.doSomeWork()
         
@@ -39,11 +40,20 @@ class MapShowInteractor: MapShowBusinessLogic, MapShowDataStore {
         
         // Search location
         locationManager.handlerLocationCompletion = { _ in
-            let coordinate = CLLocationCoordinate2D.init(latitude: self.locationManager.currentLocation.latitude!,
-                                                         longitude: self.locationManager.currentLocation.longitude!)
-            
-            let responseModel = MapShowModels.Something.ResponseModel(coordinate: coordinate, isVerified: self.locationManager.currentLocation.isVerified)
+            let responseModel = MapShowModels.Location.ResponseModel(locationItem: self.locationManager.currentLocation)
             self.presenter?.prepareDisplayLocationInMap(fromResponseModel: responseModel)
         }
+    }
+    
+    func loadLocationByTapInMap(fromRequestModel requestModel: MapShowModels.Location.RequestModel) {
+        MSMRestApiManager.instance.userRequestDidRun(.locationByCoordinates(requestModel.parameters!), withHandlerResponseAPICompletion: { responseAPI in
+            if let data = responseAPI!.data as? [String: AnyObject], data.count > 0 {
+                self.locationManager.currentLocation.mapped(json: data)
+            }
+            
+            let responseModel = MapShowModels.Location.ResponseModel(locationItem: self.locationManager.currentLocation)
+            self.presenter?.prepareDisplayLocationByTapInMap(fromResponseModel: responseModel)
+        })
+
     }
 }

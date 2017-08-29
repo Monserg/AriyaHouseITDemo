@@ -57,28 +57,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AriyaHouseITDemo/Services/MSMLocationManager.swift"
-            timestampString = "525694719.233606"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "locationManager(_:didUpdateLocations:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "AriyaHouseITDemo/Common/Models/MSMLocationItem.swift"
-            timestampString = "525695808.228588"
+            timestampString = "525706632.738666"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "verifyCoordinates(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -89,109 +73,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AriyaHouseITDemo/Common/Models/MSMLocationItem.swift"
-            timestampString = "525695808.228588"
+            filePath = "AriyaHouseITDemo/Common/Models/MSMResponseAPI.swift"
+            timestampString = "525705953.153816"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "verifyCoordinates(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AriyaHouseITDemo/Scenes/MapShow/MapShowViewController.swift"
-            timestampString = "525695808.228588"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "displayLocationInMap(fromViewModel:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AriyaHouseITDemo/Scenes/MapShow/MapShowViewController.swift"
-            timestampString = "525696450.579504"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "displayLocationInMap(fromViewModel:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AriyaHouseITDemo/Scenes/MapShow/MapShowInteractor.swift"
-            timestampString = "525696488.59979"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "loadLocationInMap(fromRequestModel:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "AriyaHouseITDemo.MapShowInteractor.loadLocationInMap (fromRequestModel : AriyaHouseITDemo.MapShowModels.Something.RequestModel) -&gt; ()"
-                  moduleName = "AriyaHouseITDemo"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/msm72/My%20Projects/Ariya%20House%20IT/app/AriyaHouseITDemo/AriyaHouseITDemo/Scenes/MapShow/MapShowInteractor.swift"
-                  timestampString = "525696732.351966"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "41"
-                  endingLineNumber = "41"
-                  offsetFromSymbolStart = "173">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "AriyaHouseITDemo.MapShowInteractor.(loadLocationInMap (fromRequestModel : AriyaHouseITDemo.MapShowModels.Something.RequestModel) -&gt; ()).(closure #1)"
-                  moduleName = "AriyaHouseITDemo"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/msm72/My%20Projects/Ariya%20House%20IT/app/AriyaHouseITDemo/AriyaHouseITDemo/Scenes/MapShow/MapShowInteractor.swift"
-                  timestampString = "525696732.353359"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42"
-                  offsetFromSymbolStart = "24">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AriyaHouseITDemo/Scenes/MapShow/MapShowInteractor.swift"
-            timestampString = "525696490.231672"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "loadLocationInMap(fromRequestModel:)"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "init(fromJSON:withBodyType:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

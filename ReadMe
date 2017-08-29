@@ -1,10 +1,14 @@
 Use cases:
 
 1. case "Open map":
-    - show current location marker
-    - if current region is now Russia or Kazakhstan, show Karaganda coordinate (latitude = 49.80456319954445, longitude = 73.07684898376465) and marker
+    - if current region is Russia or Kazakhstan, show user marker by current device location coordinates
+    - if current region is not Russia or Kazakhstan, show custom location marker by Karaganda coordinates:
+      (latitude = 49.80456319954445, longitude = 73.07684898376465)
 
-2.
+2. case "Tap on map":
+    - use API to get coordinates of map tap
+    - change show map region
+    - show custom marker
 
 
 

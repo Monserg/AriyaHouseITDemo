@@ -101,13 +101,6 @@ class MSMLocationManager: UIViewController {
                 return
             }
             
-            let placemark = placemarks![0]
-            
-            if let dictionary = placemark.addressDictionary, dictionary.count > 0 {
-                self.currentLocation.addressCity = dictionary["City"] as? String
-                self.currentLocation.addressStreet = dictionary["Thoroughfare"] as? String
-            }
-            
             return completion()
         }
     }    
@@ -123,13 +116,11 @@ extension MSMLocationManager: CLLocationManagerDelegate {
                     print("Error getting location: \(error!.localizedDescription)")
                 } else {
                     if let placeMark = (placemarks as [CLPlacemark]!).first, (placeMark.addressDictionary?.count)! > 0 && self.currentLocation == nil {
-                        self.currentLocation = MSMLocationItem(name: "Zorro",
+                        self.currentLocation = MSMLocationItem(codeID: 666,
+                                                               name: "Zorro",
                                                                latitude: (locations[0] as CLLocation).coordinate.latitude,
                                                                longitude: (locations[0] as CLLocation).coordinate.longitude,
-                                                               addressCity: placeMark.addressDictionary!["City"] as? String,
-                                                               addressStreet: placeMark.addressDictionary!["Thoroughfare"] as? String,
-                                                               countryCode: placeMark.addressDictionary!["CountryCode"] as? String,
-                                                               isVerified: true)
+                                                               countryCode: placeMark.addressDictionary!["CountryCode"] as? String)
                     }
                 }
             }

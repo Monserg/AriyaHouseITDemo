@@ -15,18 +15,17 @@ import UIKit
 // MARK: - Data models
 enum MapShowModels {
     // MARK: - Use cases
-    enum Something {
+    enum Location {
         struct RequestModel {
+            let parameters: [String: Any]?
         }
         
         struct ResponseModel {
-            let coordinate: CLLocationCoordinate2D
-            let isVerified: Bool
+            let locationItem: MSMLocationItem
         }
         
         struct ViewModel {
-            let coordinate: CLLocationCoordinate2D
-            let isVerified: Bool
+            let locationItem: MSMLocationItem
         }
     }
 }

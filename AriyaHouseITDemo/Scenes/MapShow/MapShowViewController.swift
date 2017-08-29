@@ -11,10 +11,12 @@
 //
 
 import UIKit
+import GoogleMaps
 
 // MARK: - Input & Output protocols
 protocol MapShowDisplayLogic: class {
-    func displayLocationInMap(fromViewModel viewModel: MapShowModels.Something.ViewModel)
+    func displayLocationInMap(fromViewModel viewModel: MapShowModels.Location.ViewModel)
+    func displayLocationByTapInMap(fromViewModel viewModel: MapShowModels.Location.ViewModel)
 }
 
 class MapShowViewController: UIViewController {
@@ -25,7 +27,12 @@ class MapShowViewController: UIViewController {
     
     // MARK: - IBOutlets
     // @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var mapView: GMSMapView!
+    
+    @IBOutlet weak var mapView: GMSMapView! {
+        didSet {
+            self.mapView.delegate = self
+        }
+    }
 
     
     // MARK: - Object lifecycle
@@ -80,28 +87,67 @@ class MapShowViewController: UIViewController {
     
     // MARK: - Custom Functions
     func viewSettingsDidLoad() {
-        let requestModel = MapShowModels.Something.RequestModel()
-        
-        interactor?.loadLocationInMap(fromRequestModel: requestModel)
+        let loadLocationInMapRequestModel = MapShowModels.Location.RequestModel(parameters: nil)
+        interactor?.loadLocationInMap(fromRequestModel: loadLocationInMapRequestModel)
         
         // Setup Google Map
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
+        mapView.mapType = .normal
+    }
+    
+    func mapRegionDidLoad(location: MSMLocationItem) {
+        let coordinate = CLLocationCoordinate2D(latitude: location.latitude!, longitude: location.longitude!)
+        self.mapView.camera = GMSCameraPosition(target: coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+    }
+    
+    func mapAddMarkers(markers: [CLLocationCoordinate2D]) {
+        // Delete all markers
+        self.mapView.clear()
+        
+        // Add new markers from API
+        for location in markers {
+            // Add custom marker
+            let coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+            let marker = GMSMarker(position: coordinate)
+            marker.map = mapView
+            marker.icon = GMSMarker.markerImage(with: .green)
+        }
     }
 }
 
 
 // MARK: - MapShowDisplayLogic
 extension MapShowViewController: MapShowDisplayLogic {
-    func displayLocationInMap(fromViewModel viewModel: MapShowModels.Something.ViewModel) {
-        // NOTE: Display the result from the Presenter
-        self.mapView.camera = GMSCameraPosition(target: viewModel.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+    func displayLocationInMap(fromViewModel viewModel: MapShowModels.Location.ViewModel) {
+        mapRegionDidLoad(location: viewModel.locationItem)
         
         // Add custom marker
-        if (!viewModel.isVerified) {
-            self.marker = GMSMarker(position: viewModel.coordinate)
+        if (!viewModel.locationItem.isVerified) {
+            let coordinate = CLLocationCoordinate2D(latitude: viewModel.locationItem.latitude!, longitude: viewModel.locationItem.longitude!)
+            self.marker = GMSMarker(position: coordinate)
             self.marker!.map = mapView
             self.marker!.icon = GMSMarker.markerImage(with: .green)
         }
+    }
+    
+    func displayLocationByTapInMap(fromViewModel viewModel: MapShowModels.Location.ViewModel) {
+        mapRegionDidLoad(location: viewModel.locationItem)
+
+        // Add custom marker
+        let coordinate = CLLocationCoordinate2D(latitude: viewModel.locationItem.latitude!, longitude: viewModel.locationItem.longitude!)
+
+        mapAddMarkers(markers: [coordinate])
+    }
+}
+
+
+// MARK: - GMSMapViewDelegate
+extension MapShowViewController: GMSMapViewDelegate {
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        let loadLocationByTapInMapRequestModel = MapShowModels.Location.RequestModel(parameters: [ "latitude": coordinate.latitude,
+                                                                                                   "longitude": coordinate.longitude])
+        
+        interactor?.loadLocationByTapInMap(fromRequestModel: loadLocationByTapInMapRequestModel)
     }
 }

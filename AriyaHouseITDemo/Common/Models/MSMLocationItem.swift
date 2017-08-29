@@ -9,19 +9,48 @@
 import Foundation
 import CoreLocation
 
-struct MSMLocationItem {
+class MSMLocationItem {
     // MARK: - Properties
-    var name: String!
+    var codeID: Int64!
+    var name: String?
     var latitude: CLLocationDegrees?
     var longitude: CLLocationDegrees?
-    var addressCity: String?
-    var addressStreet: String?
     var countryCode: String?
-    var isVerified: Bool!
+    var isVerified = true
     
+    
+    // MARK: - Class Initialization
+    init(codeID: Int64!, name: String?, latitude: CLLocationDegrees?, longitude: CLLocationDegrees?, countryCode: String?) {
+        self.codeID = codeID
+        self.name = name
+        self.latitude = latitude
+        self.longitude = longitude
+        self.countryCode = countryCode
+    }
+
     
     // MARK: - Custom Functions
-    mutating func verifyCoordinates(completion: HandlerLocationCompletion) {
+    func mapped(json: [String: AnyObject]) {
+        if let codeID = json["id"] as? Int64 {
+            self.codeID = codeID
+        }
+        
+        if let name = json["name"] as? String {
+            self.name = name
+        }
+        
+        if let latitude = json["latitude"] as? Double {
+            self.latitude = latitude
+        }
+        
+        if let longitude = json["longitude"] as? Double {
+            self.longitude = longitude
+        }
+    }
+
+    
+    // MARK: - Custom Functions
+    func verifyCoordinates(completion: HandlerLocationCompletion) {
         // Use case "Open map"
         if (countryCode! != "RU" && countryCode! != "KZ") {
             self.latitude   =   49.80456319954445

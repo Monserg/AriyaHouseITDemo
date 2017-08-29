@@ -9,5 +9,6 @@ target 'AriyaHouseITDemo' do
    pod 'GoogleMaps', '~> 2.4'
    pod 'GooglePlaces', '~> 2.4'
    pod 'Localize-Swift', '~> 1.6'
-   
+   pod 'SwiftyJSON', '~> 3.1'
+
 end
