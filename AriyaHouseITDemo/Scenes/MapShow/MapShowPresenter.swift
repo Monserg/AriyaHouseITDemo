@@ -16,6 +16,7 @@ import UIKit
 protocol MapShowPresentationLogic {
     func prepareDisplayLocationInMap(fromResponseModel responseModel: MapShowModels.Location.ResponseModel)
     func prepareDisplayLocationByTapInMap(fromResponseModel responseModel: MapShowModels.Location.ResponseModel)
+    func prepareDisplayLocationByAddressString(fromResponseModel responseModel: MapShowModels.Location.ResponseModel)
 }
 
 class MapShowPresenter: MapShowPresentationLogic {
@@ -32,5 +33,10 @@ class MapShowPresenter: MapShowPresentationLogic {
     func prepareDisplayLocationByTapInMap(fromResponseModel responseModel: MapShowModels.Location.ResponseModel) {
         let viewModel = MapShowModels.Location.ViewModel(locationItems: responseModel.locationItems)
         viewController?.displayLocationByTapInMap(fromViewModel: viewModel)
+    }
+    
+    func prepareDisplayLocationByAddressString(fromResponseModel responseModel: MapShowModels.Location.ResponseModel) {
+        let viewModel = MapShowModels.Location.ViewModel(locationItems: responseModel.locationItems)
+        viewController?.displayLocationByAddressString(fromViewModel: viewModel)
     }
 }

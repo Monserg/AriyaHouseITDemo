@@ -10,5 +10,6 @@ target 'AriyaHouseITDemo' do
    pod 'GooglePlaces', '~> 2.4'
    pod 'Localize-Swift', '~> 1.6'
    pod 'SwiftyJSON', '~> 3.1'
-
+   pod 'PercentEncoder', '~> 1.1'
+   
 end

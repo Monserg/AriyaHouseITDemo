@@ -9,12 +9,14 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import PercentEncoder
 
 typealias RequestParametersType = (method: HTTPMethod, apiStringURL: String, bodyType: BodyType, parameters: [String: Any]?)
 
 enum RequestType {
     // Location
     case locationByCoordinates([String: Any])
+    case locationByAddressString([String: Any])
     
     
     func introduced() -> RequestParametersType {
@@ -24,6 +26,11 @@ enum RequestType {
         case .locationByCoordinates(let params):    return (method: .get,
                                                             apiStringURL: "/clientGeocode",
                                                             bodyType: .ItemsDictionary,
+                                                            parameters: params)
+            
+        case .locationByAddressString(let params):  return (method: .get,
+                                                            apiStringURL: "/clientSearch",
+                                                            bodyType: .ItemsArray,
                                                             parameters: params)
         }
     }
@@ -48,8 +55,6 @@ final class MSMRestApiManager {
     
     
     // MARK: - Class Functions
-    
-    // Main Generic func
     func userRequestDidRun(_ requestType: RequestType, withHandlerResponseAPICompletion handlerResponseAPICompletion: @escaping (MSMResponseAPI?) -> Void) {
         let requestParameters = requestType.introduced()
         appApiString = requestParameters.apiStringURL
@@ -60,9 +65,9 @@ final class MSMRestApiManager {
                 let value = dictionary.value
                 
                 if (index) == 0 {
-                    appURL = URL.init(string: appURL.absoluteString.appending("?\(key)=\(value)"))
+                    appURL = URL.init(string: PercentEncoding.encodeURI.evaluate(string: appURL.absoluteString.appending("?\(key)=\(value)")))
                 } else {
-                    appURL = URL.init(string: appURL.absoluteString.appending("&\(key)=\(value)"))
+                    appURL = URL.init(string: PercentEncoding.encodeURI.evaluate(string: appURL.absoluteString.appending("&\(key)=\(value)")))
                 }
             }
         }

@@ -17,6 +17,7 @@ import GoogleMaps
 protocol MapShowDisplayLogic: class {
     func displayLocationInMap(fromViewModel viewModel: MapShowModels.Location.ViewModel)
     func displayLocationByTapInMap(fromViewModel viewModel: MapShowModels.Location.ViewModel)
+    func displayLocationByAddressString(fromViewModel viewModel: MapShowModels.Location.ViewModel)
 }
 
 class MapShowViewController: UIViewController {
@@ -34,6 +35,13 @@ class MapShowViewController: UIViewController {
         }
     }
 
+    @IBOutlet weak var searchTextField: UITextField! {
+        didSet {
+            self.searchTextField.delegate = self
+            self.searchTextField.placeholder = self.searchTextField.placeholder?.localized()
+        }
+    }
+    
     
     // MARK: - Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -96,9 +104,21 @@ class MapShowViewController: UIViewController {
         mapView.mapType = .normal
     }
     
-    func mapRegionDidLoad(location: MSMLocationItem) {
-        let coordinate = CLLocationCoordinate2D(latitude: location.latitude!, longitude: location.longitude!)
-        self.mapView.camera = GMSCameraPosition(target: coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+    func mapRegionDidLoad(fromLocations locations: [MSMLocationItem], andVerified isVerified: Bool) {
+        if locations.count == 1 {
+            let coordinate = CLLocationCoordinate2D(latitude: locations.first!.latitude!, longitude: locations.first!.longitude!)
+            self.mapView.camera = GMSCameraPosition(target: coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+
+            // Add custom marker
+            if (isVerified) {
+                mapAddMarkers(fromLocations: locations)
+            }
+        } else if locations.count > 1 {
+            self.mapView.animate(toZoom: 12)
+            
+            // Add custom marker
+            mapAddMarkers(fromLocations: locations)
+        }
     }
     
     func mapAddMarkers(fromLocations locations: [MSMLocationItem]) {
@@ -120,19 +140,15 @@ class MapShowViewController: UIViewController {
 // MARK: - MapShowDisplayLogic
 extension MapShowViewController: MapShowDisplayLogic {
     func displayLocationInMap(fromViewModel viewModel: MapShowModels.Location.ViewModel) {
-        mapRegionDidLoad(location: viewModel.locationItems.first!)
-        
-        // Add custom marker
-        if (!viewModel.locationItems.first!.isVerified) {
-            mapAddMarkers(fromLocations: viewModel.locationItems)
-        }
+        mapRegionDidLoad(fromLocations: viewModel.locationItems, andVerified: viewModel.locationItems.first!.isVerified)
     }
     
     func displayLocationByTapInMap(fromViewModel viewModel: MapShowModels.Location.ViewModel) {
-        mapRegionDidLoad(location: viewModel.locationItems.first!)
-
-        // Add custom marker
-        mapAddMarkers(fromLocations: viewModel.locationItems)
+        mapRegionDidLoad(fromLocations: viewModel.locationItems, andVerified: true)
+    }
+    
+    func displayLocationByAddressString(fromViewModel viewModel: MapShowModels.Location.ViewModel) {
+        mapRegionDidLoad(fromLocations: viewModel.locationItems, andVerified: true)
     }
 }
 
@@ -140,9 +156,39 @@ extension MapShowViewController: MapShowDisplayLogic {
 // MARK: - GMSMapViewDelegate
 extension MapShowViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        // Hide keyboard
+        self.searchTextField.text = nil
+        self.searchTextField.resignFirstResponder()
+        
+        // API
         let loadLocationByTapInMapRequestModel = MapShowModels.Location.RequestModel(parameters: [ "latitude": coordinate.latitude,
                                                                                                    "longitude": coordinate.longitude])
         
         interactor?.loadLocationByTapInMap(fromRequestModel: loadLocationByTapInMapRequestModel)
+    }
+}
+
+
+// MARK: - UITextFieldDelegate
+extension MapShowViewController: UITextFieldDelegate {
+    // Clear button tap
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        return true;
+    }
+    
+    // Hide keyboard
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return true;
+    }
+    
+    // Return button tap
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        // API
+        let loadLocationByAddress = MapShowModels.Location.RequestModel(parameters: [ "query": textField.text! ])
+        interactor?.loadLocationByAddressString(fromRequestModel: loadLocationByAddress)
+
+        return true;
     }
 }

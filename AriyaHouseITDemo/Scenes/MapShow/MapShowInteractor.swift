@@ -16,6 +16,7 @@ import UIKit
 protocol MapShowBusinessLogic {
     func loadLocationInMap(fromRequestModel requestModel: MapShowModels.Location.RequestModel)
     func loadLocationByTapInMap(fromRequestModel requestModel: MapShowModels.Location.RequestModel)
+    func loadLocationByAddressString(fromRequestModel requestModel: MapShowModels.Location.RequestModel)
 }
 
 protocol MapShowDataStore {
@@ -54,6 +55,23 @@ class MapShowInteractor: MapShowBusinessLogic, MapShowDataStore {
             let responseModel = MapShowModels.Location.ResponseModel(locationItems: [self.locationManager.currentLocation])
             self.presenter?.prepareDisplayLocationByTapInMap(fromResponseModel: responseModel)
         })
+    }
+    
+    func loadLocationByAddressString(fromRequestModel requestModel: MapShowModels.Location.RequestModel) {
+        MSMRestApiManager.instance.userRequestDidRun(.locationByAddressString(requestModel.parameters!), withHandlerResponseAPICompletion: { responseAPI in
+            var locations = [MSMLocationItem]()
 
+            if let items = responseAPI!.data as? [[String: AnyObject]], items.count > 0 {
+                for item in items {
+                    let location = MSMLocationItem()
+                    location.mapped(json: item)
+                    
+                    locations.append(location)
+                }
+            }
+            
+            let responseModel = MapShowModels.Location.ResponseModel(locationItems: locations)
+            self.presenter?.prepareDisplayLocationByAddressString(fromResponseModel: responseModel)
+        })
     }
 }

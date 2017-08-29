@@ -20,6 +20,10 @@ class MSMLocationItem {
     
     
     // MARK: - Class Initialization
+    init() {
+        self.codeID = 1
+    }
+    
     init(codeID: Int64!, name: String?, latitude: CLLocationDegrees?, longitude: CLLocationDegrees?, countryCode: String?) {
         self.codeID = codeID
         self.name = name

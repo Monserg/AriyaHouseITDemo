@@ -10,6 +10,10 @@ Use cases:
     - change show map region
     - show custom marker
 
+3. case "Enter address":
+    - use API to get coordinates of all markers
+    - change show map region
+    - show custom markers
 
 
 
