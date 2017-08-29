@@ -101,14 +101,14 @@ class MapShowViewController: UIViewController {
         self.mapView.camera = GMSCameraPosition(target: coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
     }
     
-    func mapAddMarkers(markers: [CLLocationCoordinate2D]) {
+    func mapAddMarkers(fromLocations locations: [MSMLocationItem]) {
         // Delete all markers
         self.mapView.clear()
         
         // Add new markers from API
-        for location in markers {
+        for location in locations {
             // Add custom marker
-            let coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+            let coordinate = CLLocationCoordinate2D(latitude: location.latitude!, longitude: location.longitude!)
             let marker = GMSMarker(position: coordinate)
             marker.map = mapView
             marker.icon = GMSMarker.markerImage(with: .green)
@@ -120,24 +120,19 @@ class MapShowViewController: UIViewController {
 // MARK: - MapShowDisplayLogic
 extension MapShowViewController: MapShowDisplayLogic {
     func displayLocationInMap(fromViewModel viewModel: MapShowModels.Location.ViewModel) {
-        mapRegionDidLoad(location: viewModel.locationItem)
+        mapRegionDidLoad(location: viewModel.locationItems.first!)
         
         // Add custom marker
-        if (!viewModel.locationItem.isVerified) {
-            let coordinate = CLLocationCoordinate2D(latitude: viewModel.locationItem.latitude!, longitude: viewModel.locationItem.longitude!)
-            self.marker = GMSMarker(position: coordinate)
-            self.marker!.map = mapView
-            self.marker!.icon = GMSMarker.markerImage(with: .green)
+        if (!viewModel.locationItems.first!.isVerified) {
+            mapAddMarkers(fromLocations: viewModel.locationItems)
         }
     }
     
     func displayLocationByTapInMap(fromViewModel viewModel: MapShowModels.Location.ViewModel) {
-        mapRegionDidLoad(location: viewModel.locationItem)
+        mapRegionDidLoad(location: viewModel.locationItems.first!)
 
         // Add custom marker
-        let coordinate = CLLocationCoordinate2D(latitude: viewModel.locationItem.latitude!, longitude: viewModel.locationItem.longitude!)
-
-        mapAddMarkers(markers: [coordinate])
+        mapAddMarkers(fromLocations: viewModel.locationItems)
     }
 }
 

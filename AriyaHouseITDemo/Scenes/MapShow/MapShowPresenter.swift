@@ -25,12 +25,12 @@ class MapShowPresenter: MapShowPresentationLogic {
     
     // MARK: - Presentation Logic implementation
     func prepareDisplayLocationInMap(fromResponseModel responseModel: MapShowModels.Location.ResponseModel) {
-        let viewModel = MapShowModels.Location.ViewModel(locationItem: responseModel.locationItem)
+        let viewModel = MapShowModels.Location.ViewModel(locationItems: responseModel.locationItems)
         viewController?.displayLocationInMap(fromViewModel: viewModel)
     }
     
     func prepareDisplayLocationByTapInMap(fromResponseModel responseModel: MapShowModels.Location.ResponseModel) {
-        let viewModel = MapShowModels.Location.ViewModel(locationItem: responseModel.locationItem)
+        let viewModel = MapShowModels.Location.ViewModel(locationItems: responseModel.locationItems)
         viewController?.displayLocationByTapInMap(fromViewModel: viewModel)
     }
 }

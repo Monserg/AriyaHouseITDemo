@@ -40,7 +40,7 @@ class MapShowInteractor: MapShowBusinessLogic, MapShowDataStore {
         
         // Search location
         locationManager.handlerLocationCompletion = { _ in
-            let responseModel = MapShowModels.Location.ResponseModel(locationItem: self.locationManager.currentLocation)
+            let responseModel = MapShowModels.Location.ResponseModel(locationItems: [self.locationManager.currentLocation])
             self.presenter?.prepareDisplayLocationInMap(fromResponseModel: responseModel)
         }
     }
@@ -51,7 +51,7 @@ class MapShowInteractor: MapShowBusinessLogic, MapShowDataStore {
                 self.locationManager.currentLocation.mapped(json: data)
             }
             
-            let responseModel = MapShowModels.Location.ResponseModel(locationItem: self.locationManager.currentLocation)
+            let responseModel = MapShowModels.Location.ResponseModel(locationItems: [self.locationManager.currentLocation])
             self.presenter?.prepareDisplayLocationByTapInMap(fromResponseModel: responseModel)
         })
 

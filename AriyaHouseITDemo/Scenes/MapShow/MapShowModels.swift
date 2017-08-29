@@ -21,11 +21,11 @@ enum MapShowModels {
         }
         
         struct ResponseModel {
-            let locationItem: MSMLocationItem
+            let locationItems: [MSMLocationItem]
         }
         
         struct ViewModel {
-            let locationItem: MSMLocationItem
+            let locationItems: [MSMLocationItem]
         }
     }
 }
